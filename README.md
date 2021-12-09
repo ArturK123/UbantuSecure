@@ -3,12 +3,19 @@
 
 ## Basic
 ```
-sudo apt-get update
-sudo apt upgrade
+sudo apt-get update && sudo apt upgrade && sudo apt dist-upgrade
+```
+
+## Auto Update
+use man dpkg-reconfigure for more, or visit [this](https://askubuntu.com/questions/590898/what-is-dpkg-reconfigure-and-how-is-it-different-from-dpkg-configure) link
+```
+sudo apt install unattended-upgrades
+dpkg-reconfigure --priority=low unattended-upgrades
 ```
 
 ## Update FireFox Ubuntu
 ```
+firefox --version
 sudo apt install firefox
 ```
 ## Install, update, and uninstall Firefox from Mozilla PPA repository
@@ -40,7 +47,37 @@ sudo apt-get install clamav clamav-daemon
 sudo freshclam
 clamscan -r /
 ```
+## List Open Ports
 
+search before removing
+```
+sudo ss -tupln
+```
+
+## Configure UFW
+
+Do this after updating everything ufw probably blocks FireFoxes Port
+```
+sudo apt install ufw
+sudo ufw status
+sudo ufw enable
+```
+
+## Block Pings
+```
+sudo nano /etc/ufw/before.rules
+```
+Add the folowing line
+
+```
+-A ufw-before-input -p icmp --icmp-type echo-request -j DROP
+```
+
+Restart UFW
+
+```
+sudo ufw reload
+```
 
 # Errors
 
