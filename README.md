@@ -57,9 +57,14 @@ clamscan -r /
 ```
 ## List Open Ports
 
-search before removing
+search about the port before removing
 ```
+sudo apt install net-tools
 sudo ss -tupln
+```
+Monitor ports advanced way
+```
+netstat ‐tulpn
 ```
 
 ## Configure UFW
@@ -106,11 +111,21 @@ sudo nano common-password
 ```
 ### Step 3
 
-add `remember=5` to end of pam_unix.so
+add `remember=5`, and `minlen=8` to end of pam_unix.so
 
 add `ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1` to pam_cracklib.so
 
 ### Step 4
+
+#### Open Auth
+
+```
+sudo nano common-auth
+```
+if this dosent work the file should be `system-auth`
+
+
+### Step 5
 
 ```
 sudo nano ../login.defs
@@ -122,12 +137,36 @@ Change `PASS_MIN_DAYS 10`
 
 Change `PASS_WARN_AGE 7`
 
-### Step 5
+### Step 4
+
+#### Open Auth
 ```
 sudo nano common-auth
 ```
 
-Add `auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800` at the end of the file
+if this dosent work the file is called `system-auth`
+
+#### Add the folowing at the end of the file
+
+```
+auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800
+```
+
+
+#### The Commands Below Might Take Away points, as I have not run them before
+
+```
+auth required /lib/security/$ISA/pam_tally.so onerr=fail no_magic_root
+```
+
+```
+account required /lib/security/$ISA/pam_tally.so per_user deny=5
+no_magic_root reset
+```
+
+### Step 5
+
+
 
 ## Find Hiden Files
 look through all /home/users
@@ -156,13 +195,24 @@ add the line `allow-guest=false` to the end of the file
 ## Check running Daemons (services)
 
 ### Look for daenons
-```top```
+```
+top
+```
 
 press `crtl+c` to quit
 
 ### Kill a Daemon
-```killall [daemon name]```
+```
+killall [daemon name]
+```
 
+## Audit Policys
+
+Install, enable, and edit Audit Policys
+```
+apt‐get install auditd && auditctl –e 1 && sudo nano /etc/audit/auditd.conf
+```
+I don't know the recomended policys
 
 # Errors
 
