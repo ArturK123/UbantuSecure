@@ -69,8 +69,10 @@ sudo ufw enable
 ```
 sudo nano /etc/ufw/before.rules
 ```
-Add the folowing line
+
 ![this is an image](https://raw.githubusercontent.com/ArturK123/UbantuSecure/main/Screen%20Shot%202021-12-09%20at%205.27.19%20PM.png)
+
+Add the folowing line to the spot on the image
 
 ```
 -A ufw-before-input -p icmp --icmp-type echo-request -j DROP
