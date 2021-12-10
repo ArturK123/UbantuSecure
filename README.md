@@ -10,7 +10,7 @@ sudo apt-get update && sudo apt upgrade && sudo apt dist-upgrade
 use man dpkg-reconfigure for more, or visit [this](https://askubuntu.com/questions/590898/what-is-dpkg-reconfigure-and-how-is-it-different-from-dpkg-configure) link
 ```
 sudo apt install unattended-upgrades
-dpkg-reconfigure --priority=low unattended-upgrades
+sudo dpkg-reconfigure --priority=low unattended-upgrades
 ```
 
 ## Update FireFox Ubuntu
@@ -78,6 +78,45 @@ Restart UFW
 ```
 sudo ufw reload
 ```
+
+## Pam Files
+
+### Step 1
+
+install pam
+```
+cd ../.. && cd /etc/pam.d/ && sudo apt install libpam-cracklib
+sudo nano common-password
+```
+### Step 3
+
+add `remember=5` to end of pam_unix.so
+add `ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1` to pam_cracklib.so
+
+### Step 4
+
+```
+sudo nano ../login.defs
+```
+
+Change `PASS_MAX_DAYS 90`
+Change `PASS_MIN_DAYS 10`
+Change `PASS_WARN_AGE 7`
+
+### Step 5
+```
+sudo nano common-auth
+```
+
+Add `auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800` at the end of the file
+
+## Find Hiden Files
+look through all /home/users
+```
+ls -la
+```
+
+
 
 # Errors
 
