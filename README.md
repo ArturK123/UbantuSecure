@@ -155,7 +155,7 @@ add the line `allow-guest=false` to the end of the file
 
 ## Check running Daemons (services)
 
-###Look for daenons
+### Look for daenons
 ```top```
 
 press `crtl+c` to quit
