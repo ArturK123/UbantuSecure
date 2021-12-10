@@ -66,10 +66,15 @@ sudo ss -tupln
 
 Do this after updating everything ufw probably blocks FireFoxes Port
 ```
-sudo apt install ufw
+sudo apt install ufw gufw
 sudo ufw status
 sudo ufw enable
+sudo gufw
 ```
+
+The configuration should look like this
+
+![this is an image](https://raw.githubusercontent.com/ArturK123/UbantuSecure/main/Screen%20Shot%202021-12-09%20at%2010.21.22%20PM.png)
 
 ## Block Pings
 ```
@@ -130,6 +135,33 @@ look through all /home/users
 ls -la
 ```
 
+## Account Management
+
+### Groups
+
+To list all groups: `cat /etc/group`
+
+To add a group: `addgroup [groupname]`
+
+To add a user to a group: `adduser [username] [groupname]`
+
+### Trun off guest account
+
+```
+cd /usr/share/lightdm/lightdm.conf.d/ && sudo nano 50-ubuntu.conf
+```
+
+add the line `allow-guest=false` to the end of the file
+
+## Check running Daemons (services)
+
+###Look for daenons
+```top```
+
+press `crtl+c` to quit
+
+### Kill a Daemon
+```killall [daemon name]```
 
 
 # Errors
