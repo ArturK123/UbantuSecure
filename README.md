@@ -7,6 +7,9 @@ sudo apt-get update && sudo apt upgrade && sudo apt dist-upgrade
 ```
 
 ## Change Update Config
+
+Navigate to Aplications < Software & Updates < Updates
+
 ![this is an image](https://raw.githubusercontent.com/ArturK123/UbantuSecure/main/Screen%20Shot%202021-12-09%20at%205.52.08%20PM.png)
 
 ## Auto Update
