@@ -118,28 +118,6 @@ add `ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1` to pam_cracklib.so
 ### Step 4
 
 #### Open Auth
-
-```
-sudo nano common-auth
-```
-if this dosent work the file should be `system-auth`
-
-
-### Step 5
-
-```
-sudo nano ../login.defs
-```
-
-Change `PASS_MAX_DAYS 90`
-
-Change `PASS_MIN_DAYS 10`
-
-Change `PASS_WARN_AGE 7`
-
-### Step 4
-
-#### Open Auth
 ```
 sudo nano common-auth
 ```
@@ -165,6 +143,16 @@ no_magic_root reset
 ```
 
 ### Step 5
+
+```
+sudo nano ../login.defs
+```
+
+Change `PASS_MAX_DAYS 90`
+
+Change `PASS_MIN_DAYS 10`
+
+Change `PASS_WARN_AGE 7`
 
 
 
